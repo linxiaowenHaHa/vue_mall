@@ -19,6 +19,10 @@
             <slider :imgUrl="subImageList" :imgHeight="700" class="detail-slider"></slider>
         </section>
         <section class="detail-info">
+            <div style="float:right;">
+                <i class="iconfont icon-fenxiang"></i>
+                <span>分享</span>
+            </div>
             <p class="detail-info-name" v-text="productData.name"></p>
             <p class="detail-info-subtitle" v-text="productData.subtitle"></p>
             <div>
@@ -280,6 +284,18 @@
             padding: 20px 30px;
             font-size: 30px;
             box-sizing: border-box;
+            div{
+                .iconfont{
+                    font-size: 0.453333rem;
+                    line-height: 0.8rem;
+                    color: #999;
+                    font-weight: bold;
+                }
+                span{
+                    line-height: 0.8rem;
+                    color: #999;
+                }
+            }
             .detail-info-name {
                 font-size: 40px;
                 color: #333;

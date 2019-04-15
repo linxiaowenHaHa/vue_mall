@@ -11,6 +11,7 @@ axios.interceptors.request.use(function (config) {
 })
 // 响应拦截器
 axios.interceptors.response.use(function (response) {
+    console.log(response);
     let responseStatus = response.data.status
     if(responseStatus === 10){
         window.location.href = '/#/login'
