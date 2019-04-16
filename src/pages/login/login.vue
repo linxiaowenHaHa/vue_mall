@@ -66,6 +66,22 @@
             }
         },
         methods: {
+            getCode:function(){ // 获取code
+                param = JSON.parse(app.getItem(app.localKey.param));
+                if(!param){
+                    param = {}
+                }
+                param.loginBack = 'login.html'; //定义微信授权成功以后返回的页面
+                app.setItem(app.localKey.param,JSON.stringify(param));
+                
+                this.redirect_uri = window.location.origin + "/域名后的文件层级/index.html";//origin是自动获取当前的域名路径的前缀，[域名后的文件层级]是执行index.html的路径
+                wxApi.getCode(this.appid,this.urlencode(this.redirect_uri));
+            },
+            urlencode:function(str) {  //url转码，把字符串作为 URI 组件进行编码
+                str = (str + '').toString();   
+                return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').  
+                replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');  
+            }, 
             focusText(e){
                 let $className = e.currentTarget.className
                 $className === 'login-username' ? this.usernameClose = false : this.passwordClose = false
