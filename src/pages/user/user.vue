@@ -128,6 +128,26 @@
                     this.recommendList = res.data.list
                 })
             },
+            init:function() {
+                if(this.getRequest().code!=undefined){
+                        this.getUnionid(this.getRequest().code);
+                    }
+                },
+            getRequest:function () {  //获取当前url的参数，判断是否是微信登录的回调。获取微信回调的code参数
+                var url = location.search; //获取url中"?"符后的字串  
+                var theRequest = new Object();  
+                if (url.indexOf("?") != -1) {  
+                    var str = url.substr(1);  
+                    strs = str.split("&");  
+                    for(var i = 0; i < strs.length; i ++) {  
+                        theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+                    }  
+                }  
+                return theRequest;  
+            },
+            getUnionid:function(code){ // 获取用户的基础信息，将unionid作为唯一标识
+                wxApi.getUnionid(code);
+            },
             productDetail(index) {
                 let footprintList = getStore('footprintList')
                 footprintList.unshift(this.recommendList[index])
