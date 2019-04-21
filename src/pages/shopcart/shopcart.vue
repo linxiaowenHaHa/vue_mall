@@ -64,7 +64,7 @@
               <div class="recommend-list">
                 <div class="recommend-item" v-for="(item,index) in recommendList"
                      @click="productDetail($event,index)">
-                  <img :src="item.imageHost+item.mainImage" v-if="item.imageHost && item.mainImage"/>
+                  <img :src="item.imageHost+item.mainImage" v-if="index > 0 && item.imageHost && item.mainImage"/>
                   <img src="../../assets/product_default.jpg" v-else/>
                   <p>{{item.name}}</p>
                   <div>
