@@ -3,7 +3,7 @@ export function getCode(appid, redirect_uri){  // 此处的appid为所需绑定�
         window.location = url;
     };
 export function getUnionid(code){ 
-        var url = "http://后端的接口?code="+code; // 后端接口，即回到以后步骤2-4，然后返回用户基本信息。前后端分离会出现跨域问题，需要后端做好预处理
+        var url = "http://118.25.180.23:9002/EPlatform/doc.html?code="+code; // 后端接口，即回到以后步骤2-4，然后返回用户基本信息。前后端分离会出现跨域问题，需要后端做好预处理
         $.ajax({
             type: 'GET',
             url: url,

@@ -73,6 +73,7 @@
     import loading from '../../components/common/loading'
     import {dedupeObject, getStore} from "../../common/js/util";
     import {checkLogin, productListKeyword} from "../../service/getData";
+    import {getCode, getUnionid} from '../../service/wxapi.js'
     import {mapState, mapMutations} from 'vuex'
 
     export default {
@@ -128,12 +129,12 @@
                     this.recommendList = res.data.list
                 })
             },
-            init:function() {
+            init() {
                 if(this.getRequest().code!=undefined){
-                        this.getUnionid(this.getRequest().code);
+                        this.getUserUnionid(this.getRequest().code);
                     }
                 },
-            getRequest:function () {  //获取当前url的参数，判断是否是微信登录的回调。获取微信回调的code参数
+            getRequest () {  //获取当前url的参数，判断是否是微信登录的回调。获取微信回调的code参数
                 var url = location.search; //获取url中"?"符后的字串  
                 var theRequest = new Object();  
                 if (url.indexOf("?") != -1) {  
@@ -145,8 +146,8 @@
                 }  
                 return theRequest;  
             },
-            getUnionid:function(code){ // 获取用户的基础信息，将unionid作为唯一标识
-                wxApi.getUnionid(code);
+            getUserUnionid(code){ // 获取用户的基础信息，将unionid作为唯一标识
+                getUnionid(code);
             },
             productDetail(index) {
                 let footprintList = getStore('footprintList')
